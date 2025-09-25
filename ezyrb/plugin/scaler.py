@@ -26,6 +26,9 @@ class DatabaseScaler(Plugin):
         self.scaler = scaler
         self.mode = mode
         self.target = target
+        
+        if target == 'parameters': #TODO
+            raise NotImplementedError("Scaling of parameters not implemented yet.")
 
     @property
     def target(self):
@@ -141,5 +144,5 @@ class DatabaseScaler(Plugin):
                 db.parameters_matrix,
                 self.scaler.inverse_transform(self._select_matrix(db)),
             )
-
+            
         rom._reduced_database = new_db
