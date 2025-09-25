@@ -41,8 +41,6 @@ def test_values():
     test_param = param[2]
     truth_sol = db.snapshots_matrix[2]
     predicted_sol = rom.predict(test_param).snapshots_matrix[0]
-    print(predicted_sol)
-    print(truth_sol)
     np.testing.assert_allclose(predicted_sol, truth_sol, 
             rtol=1e-5, atol=1e-5)
 
