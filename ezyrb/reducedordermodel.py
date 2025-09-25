@@ -338,8 +338,8 @@ class ReducedOrderModel():
         >>> rbf = RBF()
         >>> rom = ROM(db_train, pod, rbf)
         >>> rom.fit()
-        >>> err_train = rom.reconstruction_error(relative=True)
-        >>> err_rec = rom.reconstruction_error(db_test, relative=True)
+        >>> err_train_reduct = rom.reconstruction_error(relative=True)
+        >>> err_test_reduct = rom.reconstruction_error(db_test, relative=True)
         """
         
         errs = []
@@ -388,9 +388,9 @@ class ReducedOrderModel():
         >>> rbf = RBF()
         >>> rom = ROM(db_train, pod, rbf)
         >>> rom.fit()
-        >>> err_train = rom.approximation_error(relative=True)
-        >>> err_approx = rom.approximation_error(db_test, relative=True)
-        
+        >>> err_train_approx = rom.approximation_error(relative=True)
+        >>> err_test_approx = rom.approximation_error(db_test, relative=True)
+
         """
         errs = []
         if db is None:
