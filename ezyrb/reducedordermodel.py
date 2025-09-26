@@ -99,7 +99,12 @@ class ReducedOrderModel():
         :rtype: Database
         """
         mu = np.atleast_2d(mu)
-
+        
+        for plugin in self.plugins:
+            if plugin.target == 'parameters':
+                mu = plugin.scaler.transform(mu)
+            
+ 
         self._reduced_database = Database(
                 mu, np.atleast_2d(self.approximation.predict(mu)))
 
