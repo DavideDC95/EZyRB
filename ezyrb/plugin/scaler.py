@@ -27,9 +27,6 @@ class DatabaseScaler(Plugin):
         self.mode = mode
         self.target = target
         
-        if target == 'parameters': #TODO
-            raise NotImplementedError("Scaling of parameters not implemented yet.")
-
     @property
     def target(self):
         """
