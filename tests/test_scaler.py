@@ -6,7 +6,7 @@ from ezyrb import KNeighborsRegressor, RadiusNeighborsRegressor, Linear
 from ezyrb import ReducedOrderModel as ROM
 from ezyrb.plugin.scaler import DatabaseScaler
 
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 snapshots = np.load('tests/test_datasets/p_snapshots.npy').T
 pred_sol_tst = np.load('tests/test_datasets/p_predsol.npy').T
@@ -22,7 +22,7 @@ def test_constructor():
     db = Database(param, snapshots.T)
     # rom = ROM(db, pod, rbf, plugins=[DatabaseScaler(StandardScaler(), 'full', 'snapshots')])
     rom = ROM(db, pod, rbf, plugins=[
-        #DatabaseScaler(StandardScaler(), 'reduced', 'parameters'),
+        DatabaseScaler(StandardScaler(), 'reduced', 'parameters'),
         DatabaseScaler(StandardScaler(), 'reduced', 'snapshots')
     ])
     rom.fit()
@@ -35,7 +35,8 @@ def test_values():
     rbf = RBF()
     db = Database(param, snapshots.T)
     rom = ROM(db, pod, rbf, plugins=[
-        DatabaseScaler(StandardScaler(), 'reduced', 'snapshots')
+        DatabaseScaler(StandardScaler(), 'reduced', 'snapshots'),
+        DatabaseScaler(StandardScaler(), 'full', 'parameters')
     ])
     rom.fit()
     test_param = param[2]
